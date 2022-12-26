@@ -15,4 +15,4 @@
 | 5. Pavel Malchauskas   | CloudFormation |
 | 6. Boris Gorbuntsov    | Terraform      |
 
-Видео Результатов: ?????
+Видео Результатов: https://youtu.be/jvWKEqZXRUA
