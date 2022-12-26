@@ -1,0 +1,18 @@
+gorbuntsov@gmail.com
+
+Зачем тебе: data "aws_region" "current" {}, еслиу тебя есть переменная variable "aws_region".
+
+- Ты задал переменную
+variable "tag" {
+  description = "Start/Stop tag"
+  default = {
+    startstop = "true"
+  }
+  type = map(string)
+}
+
+Но в пайтоне в фильтре захардкодил value = ["true"] 
+тоесть если я решу что мой таг это:   automation = "enable", работать не будет.
+так как твое решение будет искать ec2 с тагом: automation = true
+
+Вырезав ненужные VPC и EC2, Получилось коротко и неплохо!

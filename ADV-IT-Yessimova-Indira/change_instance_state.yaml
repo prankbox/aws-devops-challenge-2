@@ -1,0 +1,52 @@
+schemaVersion: '0.3'
+assumeRole: '{{ AutomationAssumeRole }}'
+parameters:
+  AutomationAssumeRole:
+    type: String
+    description: 'ssm service role arn, to execute action'
+  TagName:
+    type: String
+    description: 'EC2 tag name'
+  Action:
+    type: Integer
+    description: '0 - stopInstances, 1 - startInstances'
+
+mainSteps:
+  - name: describe
+    action: 'aws:executeAwsApi'
+    inputs:
+      Service: ec2
+      Api: DescribeInstances
+      Filters:
+        - Name: 'tag-key'
+          Values:
+            - '{{ TagName }}'
+    outputs:
+      - Name: InstanceIds
+        Selector: $.Reservations..Instances..InstanceId
+        Type: StringList
+    nextStep: getApiAction
+  - name: getApiAction
+    action: 'aws:branch'
+    inputs:
+      Choices:
+      - NextStep: startInstances
+        Variable: "{{Action}}"
+        NumericEquals: 1
+      - NextStep: stopInstances
+        Variable: "{{Action}}"
+        NumericEquals: 0
+  - name: startInstances
+    action: 'aws:executeAwsApi'
+    inputs:
+      Service: ec2
+      Api: StartInstances
+      InstanceIds: '{{ describe.InstanceIds }}'
+    isEnd: true
+  - name: stopInstances
+    action: 'aws:executeAwsApi'
+    inputs:
+      Service: ec2
+      Api: StopInstances
+      InstanceIds: '{{ describe.InstanceIds }}'
+    isEnd: true

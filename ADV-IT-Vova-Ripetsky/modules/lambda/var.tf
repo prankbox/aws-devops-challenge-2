@@ -1,0 +1,11 @@
+variable "filename" {}
+variable "function_name" {}
+variable "handler" {}
+variable "runtime" {}
+variable "timeout" {}
+variable "region" {}
+variable "lambda_role_name" {}
+variable "lambda_policy_name" {}
+variable "tag_key" {}
+variable "tag_value" {}
+variable "tags" {}

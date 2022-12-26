@@ -1,0 +1,10 @@
+variable "event_stop_name" {}
+variable "event_start_name" {}
+variable "timezone" {}
+variable "lambda_arn" {}
+variable "start_time" {}
+variable "stop_time" {}
+variable "region" {}
+variable "event_role_name" {}
+variable "event_policy_name" {}
+variable "tags" {}
