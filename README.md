@@ -16,3 +16,4 @@
 | 6. Boris Gorbuntsov    | Terraform      |
 
 Видео Результатов: https://youtu.be/jvWKEqZXRUA
+Well done, guys!
